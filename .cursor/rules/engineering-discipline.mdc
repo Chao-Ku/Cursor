@@ -1,0 +1,45 @@
+---
+description: Clarify incomplete specs before coding, test the behavior first, verify with the project build or tests, and keep the change minimal
+alwaysApply: true
+---
+
+# Engineering discipline
+
+Apply this to every code change.
+
+## Stop when the spec is not implementable
+
+Before writing or editing business logic, identify:
+
+- the behavior that must change, and the behavior that must stay the same
+- the inputs, outputs, and boundary conditions that change the result
+- the check that proves the change is correct
+
+Read the existing code, tests, and docs before deciding something is missing. If a required item is still unknown, do not write business code. Ask only the questions that block a correct implementation. If the request already settles those items, implement it.
+
+## Test the behavior before changing it
+
+Before adding or changing business logic, add or update a test that fails for the current code, then make that test pass. Use the project's existing test runner, conventions, and directories. Do not introduce a test framework or other dependency for this.
+
+If the project has no test runner, say so in one sentence and use the closest check the project already runs.
+
+## Verify the result yourself
+
+After the edit, run the project's test command or build command. Confirm the new behavior passes and existing behavior still passes. Do not report the change as done from reading the diff alone.
+
+## Keep the change small and local
+
+- Follow the project's current language, patterns, directory layout, and libraries.
+- Write the smallest readable change that satisfies the request.
+- Do not add abstractions, configuration, or files the request does not need.
+- Do not add a dependency unless the user asked for it or the current stack cannot do the job.
+
+## Correct a failure only after naming its cause
+
+When a command or build fails:
+
+1. Read the error log.
+2. State the root cause in one sentence before the next edit.
+3. Make one correction aimed at that cause.
+
+Do not apply a new speculative edit while the cause is still unknown.
